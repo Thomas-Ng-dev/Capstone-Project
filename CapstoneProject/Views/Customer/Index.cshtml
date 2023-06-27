@@ -1,49 +1,60 @@
 ﻿@model List<Customer>
 
-<h1>Customer List</h1>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>
-                Company Name
-            </th>
-            <th>
-                Address
-            </th>
-            <th>
-                City
-            </th>
-            <th>
-                State/Province
-            </th>
-            <th>
-                Postal Code
-            </th>
-            <th>
-                Country
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Phone
-            </th>  
-        </tr>
-    </thead>
-    <tbody>
-        @* Use @ to introduce C# code. List is sorted by ascending order of names as default *@
-        @foreach(var customer in Model.OrderBy(x => x.Name))
-        {
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Customer List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="" asp-action="" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>Add New Customer
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
             <tr>
-                <td>@customer.Name</td>
-                <td>@customer.Address</td>
-                <td>@customer.City</td>
-                <td>@customer.Region</td>
-                <td>@customer.PostalCode</td>
-                <td>@customer.Country</td>
-                <td>@customer.Email</td>
-                <td>@customer.Phone</td>
+                <th>
+                    Company Name
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    State/Province
+                </th>
+                <th>
+                    Postal Code
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Phone
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @* Use @ to introduce C# code. List is sorted by ascending order of names as default *@
+            @foreach (var customer in Model.OrderBy(x => x.Name))
+            {
+                <tr>
+                    <td>@customer.Name</td>
+                    <td>@customer.Address</td>
+                    <td>@customer.City</td>
+                    <td>@customer.Region</td>
+                    <td>@customer.PostalCode</td>
+                    <td>@customer.Country</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.Phone</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
