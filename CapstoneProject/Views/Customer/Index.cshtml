@@ -31,7 +31,8 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var customer in Model.OrderByDescending(x => x.Name))
+        @* Use @ to introduce C# code. List is sorted by ascending order of names as default *@
+        @foreach(var customer in Model.OrderBy(x => x.Name))
         {
             <tr>
                 <td>@customer.Name</td>
