@@ -18,5 +18,10 @@ namespace CapstoneProject.Controllers
             List<Customer> customerList = _db.Customers.ToList();
             return View(customerList);
         }
+        // Action to go to new path/page, goes to Customer/Create
+        public IActionResult Create() 
+        { 
+            return View();
+        }
     }
 }
