@@ -62,5 +62,26 @@ namespace CapstoneProject.Controllers
             }
             return View();
         }
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            // Returns object or null
+            Customer? customer = _database.Customers.FirstOrDefault(x => x.Id == id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return View(customer);
+        }
+        [HttpPost]
+        public IActionResult Delete(Customer customer)
+        {
+            _database.Customers.Remove(customer);
+            _database.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
