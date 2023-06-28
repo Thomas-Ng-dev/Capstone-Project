@@ -52,3 +52,10 @@
 
     </div>
 </form>
+
+@* Allows for client side validation from the shared partial view which has JS stored in it *@
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

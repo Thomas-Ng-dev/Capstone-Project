@@ -8,7 +8,7 @@ namespace CapstoneProject.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [DisplayName("Company Name")] // Tag helper, will display this name when this properpty is used elsewhere
+        [DisplayName("Company Name")] // Tag helper, will display this name when this property is used elsewhere, server side
         public string Name { get; set; }
         [Required]
         [DisplayName("Street Address")]

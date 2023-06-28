@@ -26,12 +26,16 @@ namespace CapstoneProject.Controllers
         [HttpPost] // The page "Create" uses a post method to pass information
         public IActionResult Create(Customer newCustomer)
         {
-            // This executes the insert SQL statement
-            _database.Customers.Add(newCustomer);
-            // Changes to database only applied after SaveChanges
-            _database.SaveChanges();
-            // Redirect back to Customer/Index, can also be used to redirect to another controller
-            return RedirectToAction("Index");
+            if(ModelState.IsValid)
+            {
+                // This executes the insert SQL statement
+                _database.Customers.Add(newCustomer);
+                // Changes to database only applied after SaveChanges
+                _database.SaveChanges();
+                // Redirect back to Customer/Index, can also be used to redirect to another controller
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }
