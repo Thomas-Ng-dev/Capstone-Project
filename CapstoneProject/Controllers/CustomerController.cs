@@ -32,6 +32,8 @@ namespace CapstoneProject.Controllers
                 _database.Customers.Add(newCustomer);
                 // Changes to database only applied after SaveChanges
                 _database.SaveChanges();
+                // TempData is a key-value pair that is useable on the next page render, only once
+                TempData["success"] = "Customer created.";
                 // Redirect back to Customer/Index, can also be used to redirect to another controller
                 return RedirectToAction("Index");
             }
@@ -58,6 +60,7 @@ namespace CapstoneProject.Controllers
             {
                 _database.Customers.Update(customer);
                 _database.SaveChanges();
+                TempData["success"] = "Customer updated.";
                 return RedirectToAction("Index");
             }
             return View();
@@ -81,6 +84,7 @@ namespace CapstoneProject.Controllers
         {
             _database.Customers.Remove(customer);
             _database.SaveChanges();
+            TempData["success"] = "Customer deleted.";
             return RedirectToAction("Index");
         }
     }
