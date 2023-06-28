@@ -37,5 +37,30 @@ namespace CapstoneProject.Controllers
             }
             return View();
         }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            // Returns object or null
+            Customer? customer = _database.Customers.FirstOrDefault(x => x.Id == id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return View(customer);
+        }
+        [HttpPost] 
+        public IActionResult Edit(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                _database.Customers.Update(customer);
+                _database.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

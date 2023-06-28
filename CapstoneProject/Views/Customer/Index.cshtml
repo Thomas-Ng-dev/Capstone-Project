@@ -56,11 +56,11 @@
                     <td>@customer.Phone</td>
                     <td>
                         <div class="w-100 btn-group" role="group">
-                            <a asp-controller="Customer" asp-action="Edit" class="btn btn-primary mx-2">
-                                <i class="bi bi-pencil-square"></i>Edit
+                            <a asp-controller="Customer" asp-action="Edit" asp-route-id="@customer.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
                             </a>
                             <a asp-controller="Customer" asp-action="Delete" class="btn btn-danger mx-2">
-                                <i class="bi bi-dash-circle"></i>Delete
+                                <i class="bi bi-dash-circle"></i> Delete
                             </a>
                         </div>
                     </td>
