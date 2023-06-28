@@ -1,0 +1,10 @@
+﻿@* Partial view be to reused on other view pages to display messsages.
+Must add <partial name="_Notifications"/> at the top of those pages. *@
+@if (TempData["success"] != null)
+{
+    <h2>@TempData["success"]</h2>
+}
+@if (TempData["error"] != null)
+{
+    <h2>@TempData["error"]</h2>
+}
