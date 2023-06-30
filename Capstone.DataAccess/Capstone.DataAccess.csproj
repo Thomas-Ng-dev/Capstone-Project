@@ -16,4 +16,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0-preview.5.23313.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Capstone.Models\Capstone.Models.csproj" />
+    <ProjectReference Include="..\Capstone.Utility\Capstone.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

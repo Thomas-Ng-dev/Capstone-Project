@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace CapstoneProject.Migrations
+namespace Capstone.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCustomersTableToDatabase : Migration

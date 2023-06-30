@@ -1,5 +1,5 @@
-﻿using CapstoneProject.Data;
-using CapstoneProject.Models;
+﻿using Capstone.DataAccess.Data;
+using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CapstoneProject.Controllers

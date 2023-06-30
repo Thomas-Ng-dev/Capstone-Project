@@ -1,4 +1,4 @@
-using CapstoneProject.Data;
+using Capstone.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,4 @@
-using CapstoneProject.Models;
+using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

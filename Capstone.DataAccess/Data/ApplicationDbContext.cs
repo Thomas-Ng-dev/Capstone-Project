@@ -1,7 +1,7 @@
-﻿using CapstoneProject.Models;
+﻿using Capstone.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CapstoneProject.Data
+namespace Capstone.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

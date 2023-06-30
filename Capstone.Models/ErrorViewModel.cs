@@ -1,4 +1,4 @@
-namespace CapstoneProject.Models
+namespace Capstone.Models
 {
     public class ErrorViewModel
     {

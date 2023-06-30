@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace CapstoneProject.Migrations
+namespace Capstone.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class SeedingDataToCustomerTable : Migration
