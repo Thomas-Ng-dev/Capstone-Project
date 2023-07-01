@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Capstone.DataAccess\Capstone.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

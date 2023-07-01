@@ -2,8 +2,9 @@ using Capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CapstoneProject.Controllers
+namespace CapstoneProject.Areas.Client.Controllers
 {
+    [Area("Client")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

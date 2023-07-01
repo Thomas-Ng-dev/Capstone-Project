@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Capstone.DataAccess.Repository.IRepository
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository : IRepository<Customer>
     {
         void Update(Customer customer);
     }
