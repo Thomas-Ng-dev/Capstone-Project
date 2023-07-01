@@ -1,4 +1,6 @@
 using Capstone.DataAccess.Data;
+using Capstone.DataAccess.Repository;
+using Capstone.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ builder.Services.AddControllersWithViews();
 // Pass the connection string to the sql server from appsettings.json
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Add Repository/UnitOfWork to the service builder
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
