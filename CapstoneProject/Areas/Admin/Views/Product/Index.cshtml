@@ -1,12 +1,9 @@
 ﻿@model List<Product>
-@if(TempData["success"] != null)
-{
-    <h2>@TempData["success"]</h2>
-}
+
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
-            <h2 class="text-primary">Customer List</h2>
+            <h2 class="text-primary">Product List</h2>
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Product" asp-action="Create" class="btn btn-primary">

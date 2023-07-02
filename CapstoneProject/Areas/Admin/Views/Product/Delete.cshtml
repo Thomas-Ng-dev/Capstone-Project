@@ -3,56 +3,80 @@
     <input asp-for="Id" hidden />
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Update Customer</h2>
+            <h2 class="text-primary">Delete Product</h2>
             <hr />
         </div>
         <div class="mb-3 row">
+            @* asp-for uses the @Model properties for this form, does not need to add "type=text" *@
             <label asp-for=Name class="p-0"></label>
             <input asp-for=Name disabled class="form-control" />
+            <span asp-validation-for=Name></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=ProductCode class="p-0"></label>
             <input asp-for=ProductCode disabled class="form-control" />
+            <span asp-validation-for=ProductCode></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=NetWeight class="p-0"></label>
             <input asp-for=NetWeight disabled class="form-control" />
+            <span asp-validation-for=NetWeight></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=GrossWeight class="p-0"></label>
             <input asp-for=GrossWeight disabled class="form-control" />
+            <span asp-validation-for=GrossWeight></span>
         </div>
         <div class="mb-3 row">
+            @* Fix this boolean in the form? *@
             <label asp-for=IsHazardous class="p-0"></label>
-            <input asp-for=IsHazardous disabled class="form-control" />
+            @* <input asp-for=IsHazardous type="checkbox" class="form-control" /> *@
+            <div disabled>
+                <label>
+                    <input type="radio" name="IsHazardous" disabled value="true" @((Model.IsHazardous ? "checked" : "")) />
+                    True
+                </label>
+                <label>
+                    <input type="radio" name="IsHazardous" disabled value="false" @((!Model.IsHazardous ? "checked" : "")) />
+                    False
+                </label>
+            </div>
+            <span asp-validation-for=IsHazardous></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=UNnumber class="p-0"></label>
-            <input asp-for=UNnumber class="form-control" />
+            <input asp-for=UNnumber disabled class="form-control" />
+            <span asp-validation-for=UNnumber></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=Price class="p-0"></label>
-            <input asp-for=Price class="form-control" />
+            <input asp-for=Price disabled class="form-control" />
+            <span asp-validation-for=Price></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=BulkRate10 class="p-0"></label>
-            <input asp-for=BulkRate10 class="form-control" />
+            <input asp-for=BulkRate10 disabled class="form-control" />
+            <span asp-validation-for=BulkRate10></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=BulkRate100 class="p-0"></label>
-            <input asp-for=BulkRate100 class="form-control" />
+            <input asp-for=BulkRate100 disabled class="form-control" />
+            <span asp-validation-for=BulkRate100></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=Inventory class="p-0"></label>
-            <input asp-for=Inventory class="form-control" />
+            <input asp-for=Inventory disabled class="form-control" />
+            <span asp-validation-for=Inventory></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=CustomerId class="p-0"></label>
-            <input asp-for=CustomerId class="form-control" />
+            <input asp-for=CustomerId disabled class="form-control" />
+            <span asp-validation-for=CustomerId></span>
         </div>
         <div class="mb-3 row">
             <label asp-for=ImageURL class="p-0"></label>
-            <input asp-for=ImageURL class="form-control" />
+            <input asp-for=ImageURL disabled class="form-control" />
+            <span asp-validation-for=ImageURL></span>
         </div>
         <div class="row">
             <div class="col-6 col-md-3">

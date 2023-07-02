@@ -22,6 +22,7 @@ namespace Capstone.Models
         [Required]
         public double GrossWeight { get; set; }
         [Required]
+        [DisplayName("Hazardous Material")]
         public bool IsHazardous { get; set; }
         [StringLength(6, MinimumLength = 6)]
         public string? UNnumber { get; set; }
