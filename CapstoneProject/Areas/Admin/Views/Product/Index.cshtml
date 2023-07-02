@@ -18,51 +18,43 @@
         <thead>
             <tr>
                 <th>
-                    Company Name
+                    Product Name
                 </th>
                 <th>
-                    Address
+                    Product Code
                 </th>
                 <th>
-                    City
+                    Net Weight
                 </th>
                 <th>
-                    State/Province
+                    Gross Weight
                 </th>
                 <th>
-                    Postal Code
+                    Hazardous
                 </th>
                 <th>
-                    Country
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Phone
+                    Inventory
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @* Use @ to introduce C# code. List is sorted by ascending order of names as default *@
-            @foreach (var customer in Model.OrderBy(x => x.Name))
+            @foreach (var product in Model.OrderBy(x => x.Name))
             {
                 <tr>
-                    <td>@customer.Name</td>
-                    <td>@customer.Address</td>
-                    <td>@customer.City</td>
-                    <td>@customer.Region</td>
-                    <td>@customer.PostalCode</td>
-                    <td>@customer.Country</td>
-                    <td>@customer.Email</td>
-                    <td>@customer.Phone</td>
+                    <td>@product.Name</td>
+                    <td>@product.ProductCode</td>
+                    <td>@product.NetWeight</td>
+                    <td>@product.GrossWeight</td>
+                    <td>@product.IsHazardous</td>
+                    <td>@product.Inventory</td>
                     <td>
                         <div class="w-100 btn-group" role="group">
-                            <a asp-controller="Customer" asp-action="Edit" asp-route-id="@customer.Id" class="btn btn-primary mx-2">
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary mx-2">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
-                            <a asp-controller="Customer" asp-action="Delete" asp-route-id="@customer.Id" class="btn btn-danger mx-2">
+                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger mx-2">
                                 <i class="bi bi-dash-circle"></i> Delete
                             </a>
                         </div>

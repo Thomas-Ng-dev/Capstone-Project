@@ -18,9 +18,10 @@ namespace Capstone.Models
         public string City { get; set; }
         [Required]
         [DisplayName("State/Province")]
-        public string Region { get; set; } // State or Province
+        public string Province { get; set; } 
         [Required]
         [DisplayName("Postal Code")]
+        [StringLength(6, MinimumLength = 6)]
         public string PostalCode { get; set; }
         [Required]
         [DisplayName("Country")]

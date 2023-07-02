@@ -55,9 +55,10 @@ namespace Capstone.DataAccess.Migrations
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
-                    b.Property<string>("Region")
+                    b.Property<string>("Province")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -71,24 +72,24 @@ namespace Capstone.DataAccess.Migrations
                             Id = 1,
                             Address = "123 Street",
                             City = "SomeCity",
-                            Country = "United States",
+                            Country = "Canada",
                             Email = "mymail@mail.com",
                             Name = "Company 1",
                             Phone = "111-222-3333",
-                            PostalCode = "12345",
-                            Region = "Washington Stats"
+                            PostalCode = "G4W2K0",
+                            Province = "British Columbia"
                         },
                         new
                         {
                             Id = 2,
                             Address = "1234 Street",
                             City = "Argon",
-                            Country = "United States",
+                            Country = "Canada",
                             Email = "guy@mail.com",
                             Name = "Company 2",
                             Phone = "111-225-3243",
-                            PostalCode = "45678",
-                            Region = "New York"
+                            PostalCode = "H4M3D6",
+                            Province = "Ontario"
                         },
                         new
                         {
@@ -100,7 +101,7 @@ namespace Capstone.DataAccess.Migrations
                             Name = "Company 3",
                             Phone = "999-222-3333",
                             PostalCode = "J4W2R3",
-                            Region = "Quebec"
+                            Province = "Quebec"
                         });
                 });
 
@@ -111,6 +112,15 @@ namespace Capstone.DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("BulkRate10")
+                        .HasColumnType("float");
+
+                    b.Property<double>("BulkRate100")
+                        .HasColumnType("float");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<double>("GrossWeight")
                         .HasColumnType("float");
@@ -128,11 +138,20 @@ namespace Capstone.DataAccess.Migrations
                     b.Property<double>("NetWeight")
                         .HasColumnType("float");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<string>("ProductCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UNnumber")
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Products");
 
@@ -140,63 +159,101 @@ namespace Capstone.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            BulkRate10 = 4.0,
+                            BulkRate100 = 3.5,
+                            CustomerId = 1,
                             GrossWeight = 110.0,
-                            Inventory = 10,
+                            Inventory = 109,
                             IsHazardous = true,
                             Name = "Prod1",
                             NetWeight = 100.0,
-                            ProductCode = "HMG1"
+                            Price = 5.0,
+                            ProductCode = "HMG1",
+                            UNnumber = "UN0072"
                         },
                         new
                         {
                             Id = 2,
+                            BulkRate10 = 52.340000000000003,
+                            BulkRate100 = 49.990000000000002,
+                            CustomerId = 2,
                             GrossWeight = 13.0,
-                            Inventory = 11,
+                            Inventory = 1100,
                             IsHazardous = false,
                             Name = "Prod2",
                             NetWeight = 10.0,
+                            Price = 55.700000000000003,
                             ProductCode = "xx111"
                         },
                         new
                         {
                             Id = 3,
+                            BulkRate10 = 950.76999999999998,
+                            BulkRate100 = 899.95000000000005,
+                            CustomerId = 3,
                             GrossWeight = 1224.0,
-                            Inventory = 1,
+                            Inventory = 55,
                             IsHazardous = true,
                             Name = "Prod3",
                             NetWeight = 1090.0,
-                            ProductCode = "saf13"
+                            Price = 1000.5,
+                            ProductCode = "saf13",
+                            UNnumber = "UN0004"
                         },
                         new
                         {
                             Id = 4,
+                            BulkRate10 = 22.399999999999999,
+                            BulkRate100 = 20.5,
+                            CustomerId = 1,
                             GrossWeight = 15.0,
                             Inventory = 54,
                             IsHazardous = true,
                             Name = "Prod4",
                             NetWeight = 12.0,
-                            ProductCode = "fdsfds11"
+                            Price = 25.0,
+                            ProductCode = "fdsfds11",
+                            UNnumber = "UN0004"
                         },
                         new
                         {
                             Id = 5,
+                            BulkRate10 = 9.0,
+                            BulkRate100 = 8.75,
+                            CustomerId = 1,
                             GrossWeight = 22.0,
                             Inventory = 101,
                             IsHazardous = false,
                             Name = "Prod5",
                             NetWeight = 15.0,
+                            Price = 10.0,
                             ProductCode = "fsdgfds123"
                         },
                         new
                         {
                             Id = 6,
+                            BulkRate10 = 49.990000000000002,
+                            BulkRate100 = 3.5,
+                            CustomerId = 3,
                             GrossWeight = 60.0,
                             Inventory = 45,
                             IsHazardous = false,
                             Name = "Prod6",
                             NetWeight = 55.0,
+                            Price = 55.0,
                             ProductCode = "fdsgds1235"
                         });
+                });
+
+            modelBuilder.Entity("Capstone.Models.Product", b =>
+                {
+                    b.HasOne("Capstone.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 #pragma warning restore 612, 618
         }

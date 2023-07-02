@@ -11,39 +11,32 @@
             <input asp-for=Name class="form-control" />
         </div>
         <div class="mb-3 row">
-            <label asp-for=Address class="p-0"></label>
-            <input asp-for=Address class="form-control" />
+            <label asp-for=ProductCode class="p-0"></label>
+            <input asp-for=ProductCode class="form-control" />
         </div>
         <div class="mb-3 row">
-            <label asp-for=City class="p-0"></label>
-            <input asp-for=City class="form-control" />
+            <label asp-for=NetWeight class="p-0"></label>
+            <input asp-for=NetWeight class="form-control" />
         </div>
         <div class="mb-3 row">
-            <label asp-for=Region class="p-0"></label>
-            <input asp-for=Region class="form-control" />
+            <label asp-for=GrossWeight class="p-0"></label>
+            <input asp-for=GrossWeight class="form-control" />
         </div>
         <div class="mb-3 row">
-            <label asp-for=PostalCode class="p-0"></label>
-            <input asp-for=PostalCode class="form-control" />
+            @* Fix this boolean in the form? *@
+            <label asp-for=IsHazardous class="p-0"></label>
+            <input asp-for=IsHazardous class="form-control" />
         </div>
         <div class="mb-3 row">
-            <label asp-for=Country class="p-0"></label>
-            <input asp-for=Country class="form-control" />
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Email class="p-0"></label>
-            <input asp-for=Email class="form-control" />
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Phone class="p-0"></label>
-            <input asp-for=Phone class="form-control" />
+            <label asp-for=Inventory class="p-0"></label>
+            <input asp-for=Inventory class="form-control" />
         </div>
         <div class="row">
             <div class="col-6 col-md-3">
                 <button type="submit" class="btn btn-primary form-control">Create</button>
             </div>
             <div class="col-6 col-md-3">
-                <a asp-controller="Customer" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary border form-control">
                     Back to List
                 </a>
             </div>
