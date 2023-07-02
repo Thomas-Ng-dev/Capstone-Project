@@ -11,6 +11,7 @@ namespace Capstone.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         ICustomerRepository Customer { get; }
+        IProductRepository Product { get; }
         void Save();
     }
 }
