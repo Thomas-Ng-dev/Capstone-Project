@@ -17,24 +17,18 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>
-                    Product Name
-                </th>
-                <th>
-                    Product Code
-                </th>
-                <th>
-                    Net Weight
-                </th>
-                <th>
-                    Gross Weight
-                </th>
-                <th>
-                    Hazardous
-                </th>
-                <th>
-                    Inventory
-                </th>
+                <th>Product Name</th>
+                <th>Product Code</th>
+                <th>Net Weight</th>
+                <th>Gross Weight</th>
+                <th>Hazardous</th>
+                <th>UN Number</th>
+                <th>Price</th>
+                <th>Bulk Rate at 10+</th>
+                <th>Bulk Rate at 100+</th>
+                <th>Inventory</th>
+                <th>VendorId</th>
+                <th>ImageURL</th>
                 <th></th>
             </tr>
         </thead>
@@ -48,7 +42,13 @@
                     <td>@product.NetWeight</td>
                     <td>@product.GrossWeight</td>
                     <td>@product.IsHazardous</td>
+                    <td>@product.UNnumber</td>
+                    <td>@product.Price</td>
+                    <td>@product.BulkRate10</td>
+                    <td>@product.BulkRate100</td>
                     <td>@product.Inventory</td>
+                    <td>@product.CustomerId</td>
+                    <td>@product.ImageURL</td>
                     <td>
                         <div class="w-100 btn-group" role="group">
                             <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary mx-2">
