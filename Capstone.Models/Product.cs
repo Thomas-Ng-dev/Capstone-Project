@@ -41,5 +41,6 @@ namespace Capstone.Models
         public int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
+        public string ImageURL { get; set; }
     }
 }

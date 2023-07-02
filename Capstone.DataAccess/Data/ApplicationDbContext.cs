@@ -37,7 +37,8 @@ namespace Capstone.DataAccess.Data
                         BulkRate10 = 4,
                         BulkRate100 = 3.5,
                         Inventory = 109,
-                        CustomerId = 1
+                        CustomerId = 1,
+                        ImageURL = ""
                     },
                     new Product 
                     { 
@@ -52,7 +53,8 @@ namespace Capstone.DataAccess.Data
                         BulkRate10 = 52.34,
                         BulkRate100 = 49.99,
                         Inventory = 1100,
-                        CustomerId = 2
+                        CustomerId = 2,
+                        ImageURL = ""
                     },
                     new Product 
                     { 
@@ -67,7 +69,8 @@ namespace Capstone.DataAccess.Data
                         BulkRate10 = 950.77,
                         BulkRate100 = 899.95,
                         Inventory = 55,
-                        CustomerId = 3
+                        CustomerId = 3,
+                        ImageURL = ""
                     },
                     new Product 
                     { 
@@ -82,7 +85,8 @@ namespace Capstone.DataAccess.Data
                         BulkRate10 = 22.4,
                         BulkRate100 = 20.5,
                         Inventory = 54,
-                        CustomerId = 1
+                        CustomerId = 1,
+                        ImageURL = ""
                     },
                     new Product 
                     { 
@@ -97,7 +101,8 @@ namespace Capstone.DataAccess.Data
                         BulkRate10 = 9,
                         BulkRate100 = 8.75,
                         Inventory = 101,
-                        CustomerId = 1
+                        CustomerId = 1,
+                        ImageURL = ""
                     },
                     new Product 
                     { 
@@ -112,7 +117,8 @@ namespace Capstone.DataAccess.Data
                         BulkRate10 = 49.99,
                         BulkRate100 = 3.5,
                         Inventory = 45,
-                        CustomerId = 3
+                        CustomerId = 3,
+                        ImageURL = ""
                     }
               );
         }
