@@ -211,5 +211,17 @@ namespace CapstoneProject.Areas.Admin.Controllers
             TempData["success"] = "Product deleted.";
             return RedirectToAction("Index");
         }
+
+        #region API Calls
+        // EF core method to make an api that returns all data as a JSON through the getall endpoint
+        // Use this for DataTables library
+        [HttpGet]
+        public IActionResult GetAll(int id) 
+        {
+            List<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Customer").ToList();
+            return Json(new { data = productList});
+        }
+
+        #endregion
     }
 }
