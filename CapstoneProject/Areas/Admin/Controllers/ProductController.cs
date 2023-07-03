@@ -70,7 +70,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
         {
             // Custom validations
             // TODO, Validation no longer working, does not stop loading and validation
-            //  messages no longer present
+            // messages no longer present, does not happen everytime? Why?
 
 
             if (productVM.Product.Price <= productVM.Product.BulkRate10)
@@ -96,6 +96,18 @@ namespace CapstoneProject.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     // directory to save new image
                     string productPath = Path.Combine(wwwRootPath, @"images\product");
+
+                    // delete old image if you want to replace it in update
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageURL))
+                    {
+                        
+                        var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageURL.
+                            TrimStart('\\');
+                        if(System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
                     using(var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
@@ -104,7 +116,17 @@ namespace CapstoneProject.Areas.Admin.Controllers
                     productVM.Product.ImageURL = @"\images\product\" + fileName;
                 }
 
-                _unitOfWork.Product.Add(productVM.Product);
+                // Insert SQL query
+                if (productVM.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productVM.Product);
+                }
+                // Update SQL query
+                else
+                {
+                    _unitOfWork.Product.Update(productVM.Product);
+                }
+                
                 _unitOfWork.Save();
                 TempData["success"] = "Product created.";
                 return RedirectToAction("Index");
@@ -174,7 +196,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
                 return NotFound();
             }
             // Returns object or null
-            Product? product = _unitOfWork.Product.Get(x => x.Id == id);
+            Product? product = _unitOfWork.Product.Get(product => product.Id == id);
             if (product == null)
             {
                 return NotFound();
