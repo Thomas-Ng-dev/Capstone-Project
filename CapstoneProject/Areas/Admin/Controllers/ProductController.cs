@@ -120,15 +120,17 @@ namespace CapstoneProject.Areas.Admin.Controllers
                 if (productVM.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(productVM.Product);
+                    TempData["success"] = "Product created.";
                 }
                 // Update SQL query
                 else
                 {
                     _unitOfWork.Product.Update(productVM.Product);
+                    TempData["success"] = "Product updated.";
                 }
                 
                 _unitOfWork.Save();
-                TempData["success"] = "Product created.";
+                
                 return RedirectToAction("Index");
             }
             else
@@ -146,71 +148,6 @@ namespace CapstoneProject.Areas.Admin.Controllers
             }
             
         }
-        // Temporary until combined view is tested
-        //public IActionResult Edit(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    // Returns object or null
-        //    Product? product = _unitOfWork.Product.Get(x => x.Id == id);
-        //    // Custom validations
-        //    // TODO: This only evaluates the current values when you load the page, 
-        //    // not the new ones being inputted in the fields
-        //    // Seems to only be a problem for custom validation?
-        //    if (product.Price <= product.BulkRate10)
-        //    {
-        //        ModelState.AddModelError("BulkRate10", "Bulk price must be lower than the base price.");
-        //    }
-        //    if (product.BulkRate10 <= product.BulkRate100)
-        //    {
-        //        ModelState.AddModelError("BulkRate100", "Bulk price for this quantity is too high.");
-        //    }
-        //    if (product.GrossWeight <= product.NetWeight)
-        //    {
-        //        ModelState.AddModelError("GrossWeight", "Gross weight must be larger than net weight.");
-        //    }
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(product);
-        //}
-        //[HttpPost]
-        //public IActionResult Edit(Product product)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _unitOfWork.Product.Update(product);
-        //        _unitOfWork.Save();
-        //        TempData["success"] = "Product updated.";
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View();
-        //}
-        //public IActionResult Delete(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    // Returns object or null
-        //    Product? product = _unitOfWork.Product.Get(product => product.Id == id);
-        //    if (product == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(product);
-        //}
-        //[HttpPost]
-        //public IActionResult Delete(Product product)
-        //{
-        //    _unitOfWork.Product.Remove(product);
-        //    _unitOfWork.Save();
-        //    TempData["success"] = "Product deleted.";
-        //    return RedirectToAction("Index");
-        //}
 
         #region API Calls
         // EF core method to make an api that returns all data as a JSON through the getall endpoint
@@ -221,7 +158,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
             List<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Customer").ToList();
             return Json(new { data = productList});
         }
-
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             var productDeletion = _unitOfWork.Product.Get(prod => prod.Id == id);
@@ -236,7 +173,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
             }
             _unitOfWork.Product.Remove(productDeletion);
             _unitOfWork.Save();
-
+            TempData["success"] = "Product deleted.";
             return Json(new { success = true, message = "Deletion successful" });
         }
 
