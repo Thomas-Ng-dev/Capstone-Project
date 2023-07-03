@@ -13,7 +13,7 @@
         </div>
     </div>
     @* DataTable library *@
-    <table id = "myTable" class="table table-bordered table-striped" style="width:100%">
+    <table @* id = "myTable" *@ class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>Product Name</th>
@@ -30,7 +30,7 @@
                 <th></th>
             </tr>
         </thead>
-        @* <tbody>
+        <tbody>
             
             @foreach (var product in Model.OrderBy(x => x.Name))
             {
@@ -59,7 +59,7 @@
                     </td>
                 </tr>
             }
-        </tbody> *@
+        </tbody>
     </table>
 </div>
 
