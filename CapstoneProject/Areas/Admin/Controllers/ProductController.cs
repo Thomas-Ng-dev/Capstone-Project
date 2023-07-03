@@ -189,28 +189,28 @@ namespace CapstoneProject.Areas.Admin.Controllers
         //    }
         //    return View();
         //}
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            // Returns object or null
-            Product? product = _unitOfWork.Product.Get(product => product.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
-        }
-        [HttpPost]
-        public IActionResult Delete(Product product)
-        {
-            _unitOfWork.Product.Remove(product);
-            _unitOfWork.Save();
-            TempData["success"] = "Product deleted.";
-            return RedirectToAction("Index");
-        }
+        //public IActionResult Delete(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    // Returns object or null
+        //    Product? product = _unitOfWork.Product.Get(product => product.Id == id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(product);
+        //}
+        //[HttpPost]
+        //public IActionResult Delete(Product product)
+        //{
+        //    _unitOfWork.Product.Remove(product);
+        //    _unitOfWork.Save();
+        //    TempData["success"] = "Product deleted.";
+        //    return RedirectToAction("Index");
+        //}
 
         #region API Calls
         // EF core method to make an api that returns all data as a JSON through the getall endpoint
@@ -220,6 +220,24 @@ namespace CapstoneProject.Areas.Admin.Controllers
         {
             List<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Customer").ToList();
             return Json(new { data = productList});
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var productDeletion = _unitOfWork.Product.Get(prod => prod.Id == id);
+            if (productDeletion == null)
+            {
+                return Json(new { success = false, message = "Error" });
+            }
+            var prodImgDeletion = Path.Combine(_webHostEnvironment.WebRootPath, productDeletion.ImageURL.TrimStart('\\'));
+            if (System.IO.File.Exists(prodImgDeletion))
+            {
+                System.IO.File.Delete(prodImgDeletion);
+            }
+            _unitOfWork.Product.Remove(productDeletion);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Deletion successful" });
         }
 
         #endregion
