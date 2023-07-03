@@ -11,6 +11,7 @@ namespace Capstone.Models
 {
     public class Product
     {
+        // These are server side validations
         [Key]
         public int Id { get; set; }
         [Required]
@@ -41,7 +42,7 @@ namespace Capstone.Models
         public int Inventory { get; set; }
         public int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
         public string ImageURL { get; set; }
     }
 }

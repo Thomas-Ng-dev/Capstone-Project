@@ -27,6 +27,20 @@ namespace CapstoneProject.Areas.Admin.Controllers
         [HttpPost] 
         public IActionResult Create(Product newProduct)
         {
+            // Custom validations
+            if(newProduct.Price <= newProduct.BulkRate10)
+            {
+                ModelState.AddModelError("BulkRate10", "Bulk price must be lower than the base price.");
+            }
+            if (newProduct.BulkRate10 <= newProduct.BulkRate100)
+            {
+                ModelState.AddModelError("BulkRate100", "Bulk price for this quantity is too high.");
+            }
+            if(newProduct.GrossWeight <= newProduct.NetWeight)
+            {
+                ModelState.AddModelError("GrossWeight", "Gross weight must be larger than net weight.");
+            }
+
             if (ModelState.IsValid)
             {
                 _unitOfWork.Product.Add(newProduct);
@@ -44,6 +58,21 @@ namespace CapstoneProject.Areas.Admin.Controllers
             }
             // Returns object or null
             Product? product = _unitOfWork.Product.Get(x => x.Id == id);
+            // Custom validations
+            // TODO: This only evaluates the current values when you load the page, 
+            // not the new ones being inputted in the fields
+            if (product.Price <= product.BulkRate10)
+            {
+                ModelState.AddModelError("BulkRate10", "Bulk price must be lower than the base price.");
+            }
+            if (product.BulkRate10 <= product.BulkRate100)
+            {
+                ModelState.AddModelError("BulkRate100", "Bulk price for this quantity is too high.");
+            }
+            if (product.GrossWeight <= product.NetWeight)
+            {
+                ModelState.AddModelError("GrossWeight", "Gross weight must be larger than net weight.");
+            }
             if (product == null)
             {
                 return NotFound();

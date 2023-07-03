@@ -2,9 +2,11 @@
 <form method="post">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Update Customer</h2>
+            <h2 class="text-primary">Update Product</h2>
             <hr />
         </div>
+        @* Lists all validation errors at the top of page *@
+        @* <div asp-validation-summary="All"></div> *@
         <div class="mb-3 row">
             @* asp-for uses the @Model properties for this form, does not need to add "type=text" *@
             <label asp-for=Name class="p-0"></label>

@@ -5,6 +5,8 @@
             <h2 class="text-primary">Create New Product</h2>
             <hr />
         </div>
+        @* Lists all validation errors at the top of page *@
+        @* <div asp-validation-summary="All"></div> *@
         <div class="mb-3 row">
             @* asp-for uses the @Model properties for this form, does not need to add "type=text" *@
             <label asp-for=Name class="p-0"></label>
