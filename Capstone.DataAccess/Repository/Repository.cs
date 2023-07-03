@@ -18,20 +18,38 @@ namespace Capstone.DataAccess.Repository
         {
             _database = db;
             this.databaseSet = db.Set<T>();
+            // Populate FK relation, otherwise it loads as null. Use include properties from EF core.
+            _database.Products.Include(x => x.Customer).Include(x => x.CustomerId);
         }
         public void Add(T entity)
         {
             databaseSet.Add(entity);
         }
-        public T Get(Expression<Func<T, bool >> filter)
+        public T Get(Expression<Func<T, bool >> filter, string? includeProperties = null)
         {
             IQueryable<T> query = databaseSet;
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var property in includeProperties.Split(new char[] { ',' },
+                    StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
             return query.FirstOrDefault();
         }
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = databaseSet;
+            if(!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach(var property in includeProperties.Split(new char[] { ',' }, 
+                    StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(property);
+                }
+            }
             return query.ToList();
         }
 

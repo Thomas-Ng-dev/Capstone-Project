@@ -21,7 +21,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> productList = _unitOfWork.Product.GetAll().ToList();
+            List<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Customer").ToList();
             // EF Projections
             // We can only pass one list to the next view, therefore we do not have access to Customer List
             // This projection stores the customer list into a new collection
