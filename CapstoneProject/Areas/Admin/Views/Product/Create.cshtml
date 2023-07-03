@@ -1,4 +1,5 @@
-﻿@model Product
+﻿@* @model Product *@
+@model ProductVM
 <form method="post">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
@@ -6,31 +7,31 @@
             <hr />
         </div>
         @* Lists all validation errors at the top of page *@
-        @* <div asp-validation-summary="All"></div> *@
+        <div asp-validation-summary="All"></div>
         <div class="mb-3 row">
             @* asp-for uses the @Model properties for this form, does not need to add "type=text" *@
-            <label asp-for=Name class="p-0"></label>
-            <input asp-for=Name class="form-control" />
-            <span asp-validation-for=Name></span>
+            <label asp-for=Product.Name class="p-0"></label>
+            <input asp-for=Product.Name class="form-control" />
+            <span asp-validation-for=Product.Name></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=ProductCode class="p-0"></label>
-            <input asp-for=ProductCode class="form-control" />
-            <span asp-validation-for=ProductCode></span>
+            <label asp-for=Product.ProductCode class="p-0"></label>
+            <input asp-for=Product.ProductCode class="form-control" />
+            <span asp-validation-for=Product.ProductCode></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=NetWeight class="p-0"></label>
-            <input asp-for=NetWeight class="form-control" />
-            <span asp-validation-for=NetWeight></span>
+            <label asp-for=Product.NetWeight class="p-0"></label>
+            <input asp-for=Product.NetWeight class="form-control" />
+            <span asp-validation-for=Product.NetWeight></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=GrossWeight class="p-0"></label>
-            <input asp-for=GrossWeight class="form-control" />
-            <span asp-validation-for=GrossWeight></span>
+            <label asp-for=Product.GrossWeight class="p-0"></label>
+            <input asp-for=Product.GrossWeight class="form-control" />
+            <span asp-validation-for=Product.GrossWeight></span>
         </div>
         <div class="mb-3 row">
             @* Fix this boolean in the form? *@
-            <label asp-for=IsHazardous class="p-0"></label>
+            <label asp-for=Product.IsHazardous class="p-0"></label>
             @* <input asp-for=IsHazardous type="checkbox" class="form-control" /> *@
             <div>
                 <label>
@@ -42,42 +43,48 @@
                     False
                 </label>
             </div>
-            <span asp-validation-for=IsHazardous></span>
+            <span asp-validation-for=Product.IsHazardous></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=UNnumber class="p-0"></label>
-            <input asp-for=UNnumber class="form-control" />
-            <span asp-validation-for=UNnumber></span>
+            <label asp-for=Product.UNnumber class="p-0"></label>
+            <input asp-for=Product.UNnumber class="form-control" />
+            <span asp-validation-for=Product.UNnumber></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=Price class="p-0"></label>
-            <input asp-for=Price class="form-control" />
-            <span asp-validation-for=Price></span>
+            <label asp-for=Product.Price class="p-0"></label>
+            <input asp-for=Product.Price class="form-control" />
+            <span asp-validation-for=Product.Price></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=BulkRate10 class="p-0"></label>
-            <input asp-for=BulkRate10 class="form-control" />
-            <span asp-validation-for=BulkRate10></span>
+            <label asp-for=Product.BulkRate10 class="p-0"></label>
+            <input asp-for=Product.BulkRate10 class="form-control" />
+            <span asp-validation-for=Product.BulkRate10></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=BulkRate100 class="p-0"></label>
-            <input asp-for=BulkRate100 class="form-control" />
-            <span asp-validation-for=BulkRate100></span>
+            <label asp-for=Product.BulkRate100 class="p-0"></label>
+            <input asp-for=Product.BulkRate100 class="form-control" />
+            <span asp-validation-for=Product.BulkRate100></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=Inventory class="p-0"></label>
-            <input asp-for=Inventory class="form-control" />
-            <span asp-validation-for=Inventory></span>
+            <label asp-for=Product.Inventory class="p-0"></label>
+            <input asp-for=Product.Inventory class="form-control" />
+            <span asp-validation-for=Product.Inventory></span>
         </div>
         <div class="mb-3 row">
-            <label asp-for=CustomerId class="p-0"></label>
-            <input asp-for=CustomerId class="form-control" />
-            <span asp-validation-for=CustomerId></span>
+            <label asp-for=Product.CustomerId class="p-0"></label>
+            @* <input asp-for=Product.CustomerId class="form-control" /> *@
+            @* <select asp-for="Product.CustomerId" asp-items=ViewBag.CustomerList class="form-select">
+                <option disabled selected>--Select Customer--</option>
+            </select> *@
+            <select asp-for="Product.CustomerId" asp-items=@Model.CustomerList class="form-select">
+                <option disabled selected>--Select Customer--</option>
+            </select>
+            
         </div>
         <div class="mb-3 row">
-            <label asp-for=ImageURL class="p-0"></label>
-            <input asp-for=ImageURL class="form-control" />
-            <span asp-validation-for=ImageURL></span>
+            <label asp-for=Product.ImageURL class="p-0"></label>
+            <input asp-for=Product.ImageURL class="form-control" />
+            <span asp-validation-for=Product.ImageURL></span>
         </div>
         <div class="row">
             <div class="col-6 col-md-3">

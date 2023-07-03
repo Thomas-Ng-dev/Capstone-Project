@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -42,7 +43,10 @@ namespace Capstone.Models
         public int Inventory { get; set; }
         public int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
-        public Customer? Customer { get; set; }
+        [ValidateNever]
+        // Will create exception during CRUD
+        public Customer Customer { get; set; }
+        [ValidateNever]
         public string ImageURL { get; set; }
     }
 }
