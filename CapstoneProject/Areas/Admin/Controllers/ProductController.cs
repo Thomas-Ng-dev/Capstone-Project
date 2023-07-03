@@ -12,9 +12,12 @@ namespace CapstoneProject.Areas.Admin.Controllers
     {
 
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork)
+        // for file uploads, access to wwwroot folder
+        private readonly IWebHostEnvironment _webHostEnvironment; 
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -85,6 +88,22 @@ namespace CapstoneProject.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                // folder path for images
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if(file != null)
+                {
+                    // generates a unique name for the file
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    // directory to save new image
+                    string productPath = Path.Combine(wwwRootPath, @"images\product");
+                    using(var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    // ImageURL starts as empty or null, set it with the new saved image
+                    productVM.Product.ImageURL = @"images\produce\" + fileName;
+                }
+
                 _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product created.";
