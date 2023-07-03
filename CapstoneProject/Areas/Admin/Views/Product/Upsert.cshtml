@@ -1,9 +1,12 @@
 ﻿@* @model Product *@
 @model ProductVM
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Create New Product</h2>
+            <h2 class="text-primary">
+                @(Model.Product.Id != 0 ? "Update" : "Create")
+                Product
+            </h2>
             <hr />
         </div>
         @* Lists all validation errors at the top of page *@
@@ -81,14 +84,21 @@
             </select>
             
         </div>
+        @* TODO: Fix the browse color button, can't see it *@
         <div class="mb-3 row">
-            <label asp-for=Product.ImageURL class="p-0"></label>
-            <input asp-for=Product.ImageURL class="form-control" />
-            <span asp-validation-for=Product.ImageURL></span>
+            <label asp-for=Product.ImageURL class="p-0">Browse</label>
+            <input type="file" class="form-control" />
         </div>
         <div class="row">
             <div class="col-6 col-md-3">
-                <button type="submit" class="btn btn-primary form-control">Create</button>
+                @if (Model.Product.Id != 0)
+                {
+                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                }
             </div>
             <div class="col-6 col-md-3">
                 <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary border form-control">

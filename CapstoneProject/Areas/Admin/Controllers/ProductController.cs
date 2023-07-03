@@ -31,8 +31,8 @@ namespace CapstoneProject.Areas.Admin.Controllers
                 });
             return View(productList);
         }
-
-        public IActionResult Create()
+        // Combine update and insert operations into a single page, "Upsert"
+        public IActionResult Upsert(int? id)
         {
             IEnumerable<SelectListItem> CustomerList = _unitOfWork.Customer.GetAll().Select(
                 customer => new SelectListItem
@@ -49,10 +49,21 @@ namespace CapstoneProject.Areas.Admin.Controllers
                 CustomerList = CustomerList,
                 Product = new Product()
             };
-            return View(productVM);
+            if(id == null || id == 0)
+            {
+                // Create/insert view
+                return View(productVM);
+            }
+            else
+            {
+                // Edit/Update view
+                productVM.Product = _unitOfWork.Product.Get(product => product.Id == id);
+                return View(productVM);
+            }
+           
         }
         [HttpPost] 
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             // Custom validations
             // TODO, Validation no longer working, does not stop loading and validation
@@ -94,48 +105,49 @@ namespace CapstoneProject.Areas.Admin.Controllers
             }
             
         }
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            // Returns object or null
-            Product? product = _unitOfWork.Product.Get(x => x.Id == id);
-            // Custom validations
-            // TODO: This only evaluates the current values when you load the page, 
-            // not the new ones being inputted in the fields
-            // Seems to only be a problem for custom validation?
-            if (product.Price <= product.BulkRate10)
-            {
-                ModelState.AddModelError("BulkRate10", "Bulk price must be lower than the base price.");
-            }
-            if (product.BulkRate10 <= product.BulkRate100)
-            {
-                ModelState.AddModelError("BulkRate100", "Bulk price for this quantity is too high.");
-            }
-            if (product.GrossWeight <= product.NetWeight)
-            {
-                ModelState.AddModelError("GrossWeight", "Gross weight must be larger than net weight.");
-            }
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
-        }
-        [HttpPost]
-        public IActionResult Edit(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(product);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated.";
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
+        // Temporary until combined view is tested
+        //public IActionResult Edit(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    // Returns object or null
+        //    Product? product = _unitOfWork.Product.Get(x => x.Id == id);
+        //    // Custom validations
+        //    // TODO: This only evaluates the current values when you load the page, 
+        //    // not the new ones being inputted in the fields
+        //    // Seems to only be a problem for custom validation?
+        //    if (product.Price <= product.BulkRate10)
+        //    {
+        //        ModelState.AddModelError("BulkRate10", "Bulk price must be lower than the base price.");
+        //    }
+        //    if (product.BulkRate10 <= product.BulkRate100)
+        //    {
+        //        ModelState.AddModelError("BulkRate100", "Bulk price for this quantity is too high.");
+        //    }
+        //    if (product.GrossWeight <= product.NetWeight)
+        //    {
+        //        ModelState.AddModelError("GrossWeight", "Gross weight must be larger than net weight.");
+        //    }
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(product);
+        //}
+        //[HttpPost]
+        //public IActionResult Edit(Product product)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _unitOfWork.Product.Update(product);
+        //        _unitOfWork.Save();
+        //        TempData["success"] = "Product updated.";
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
