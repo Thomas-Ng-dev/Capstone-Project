@@ -1,114 +1,124 @@
 ﻿@* @model Product *@
 @model ProductVM
 <form method="post" enctype="multipart/form-data">
-    <div class="border p-3 mt-4">
-        <div class="row pb-2">
-            <h2 class="text-primary">
-                @(Model.Product.Id != 0 ? "Update" : "Create")
-                Product
-            </h2>
-            <hr />
-        </div>
-        @* Lists all validation errors at the top of page *@
-        <div asp-validation-summary="All"></div>
-        <div class="mb-3 row">
-            @* asp-for uses the @Model properties for this form, does not need to add "type=text" *@
-            <label asp-for=Product.Name class="p-0"></label>
-            <input asp-for=Product.Name class="form-control" />
-            <span asp-validation-for=Product.Name></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.ProductCode class="p-0"></label>
-            <input asp-for=Product.ProductCode class="form-control" />
-            <span asp-validation-for=Product.ProductCode></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.NetWeight class="p-0"></label>
-            <input asp-for=Product.NetWeight class="form-control" />
-            <span asp-validation-for=Product.NetWeight></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.GrossWeight class="p-0"></label>
-            <input asp-for=Product.GrossWeight class="form-control" />
-            <span asp-validation-for=Product.GrossWeight></span>
-        </div>
-        <div class="mb-3 row">
-            @* Fix this boolean in the form? *@
-            <label asp-for=Product.IsHazardous class="p-0"></label>
-            @* <input asp-for=IsHazardous type="checkbox" class="form-control" /> *@
-            <div>
-                <label>
-                    <input type="radio" name="IsHazardous" value="true" />
-                    True
-                </label>
-                <label>
-                    <input type="radio" name="IsHazardous" value="false" />
-                    False
-                </label>
-            </div>
-            <span asp-validation-for=Product.IsHazardous></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.UNnumber class="p-0"></label>
-            <input asp-for=Product.UNnumber class="form-control" />
-            <span asp-validation-for=Product.UNnumber></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.Price class="p-0"></label>
-            <input asp-for=Product.Price class="form-control" />
-            <span asp-validation-for=Product.Price></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.BulkRate10 class="p-0"></label>
-            <input asp-for=Product.BulkRate10 class="form-control" />
-            <span asp-validation-for=Product.BulkRate10></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.BulkRate100 class="p-0"></label>
-            <input asp-for=Product.BulkRate100 class="form-control" />
-            <span asp-validation-for=Product.BulkRate100></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.Inventory class="p-0"></label>
-            <input asp-for=Product.Inventory class="form-control" />
-            <span asp-validation-for=Product.Inventory></span>
-        </div>
-        <div class="mb-3 row">
-            <label asp-for=Product.CustomerId class="p-0"></label>
-            @* <input asp-for=Product.CustomerId class="form-control" /> *@
-            @* <select asp-for="Product.CustomerId" asp-items=ViewBag.CustomerList class="form-select">
-                <option disabled selected>--Select Customer--</option>
-            </select> *@
-            <select asp-for="Product.CustomerId" asp-items=@Model.CustomerList class="form-select">
-                <option disabled selected>--Select Customer--</option>
-            </select>
-            
-        </div>
-        @* TODO: Fix the browse color button, can't see it *@
-        <div class="mb-3 row">
-            <label asp-for=Product.ImageURL class="p-0">Browse</label>
-            <input type="file" name="file" class="form-control" />
-        </div>
-        <div class="row">
-            <div class="col-6 col-md-3">
-                @if (Model.Product.Id != 0)
-                {
-                    <button type="submit" class="btn btn-primary form-control">Update</button>
-                }
-                else
-                {
-                    <button type="submit" class="btn btn-primary form-control">Create</button>
-                }
-            </div>
-            <div class="col-6 col-md-3">
-                <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary border form-control">
-                    Back to List
-                </a>
-            </div>
-        </div>
+    <input asp-for="Product.Id" hidden />
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-primary">
+                        @(Model.Product.Id != 0 ? "Update" : "Create")
+                        Product
+                    </h2>
+                    <hr />
+                </div>
+                @* Lists all validation errors at the top of page *@
+                <div asp-validation-summary="All"></div>
+                <div class="mb-3 row">
+                    @* asp-for uses the @Model properties for this form, does not need to add "type=text" *@
+                    <label asp-for=Product.Name class="p-0"></label>
+                    <input asp-for=Product.Name class="form-control" />
+                    <span asp-validation-for=Product.Name></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.ProductCode class="p-0"></label>
+                    <input asp-for=Product.ProductCode class="form-control" />
+                    <span asp-validation-for=Product.ProductCode></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.NetWeight class="p-0"></label>
+                    <input asp-for=Product.NetWeight class="form-control" />
+                    <span asp-validation-for=Product.NetWeight></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.GrossWeight class="p-0"></label>
+                    <input asp-for=Product.GrossWeight class="form-control" />
+                    <span asp-validation-for=Product.GrossWeight></span>
+                </div>
+                <div class="mb-3 row">
+                    @* Fix this boolean in the form? *@
+                    <label asp-for=Product.IsHazardous class="p-0"></label>
+                    @* <input asp-for=IsHazardous type="checkbox" class="form-control" /> *@
+                    <div>
+                        <label>
+                            <input type="radio" name="IsHazardous" value="true" />
+                            True
+                        </label>
+                        <label>
+                            <input type="radio" name="IsHazardous" value="false" />
+                            False
+                        </label>
+                    </div>
+                    <span asp-validation-for=Product.IsHazardous></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.UNnumber class="p-0"></label>
+                    <input asp-for=Product.UNnumber class="form-control" />
+                    <span asp-validation-for=Product.UNnumber></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.Price class="p-0"></label>
+                    <input asp-for=Product.Price class="form-control" />
+                    <span asp-validation-for=Product.Price></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.BulkRate10 class="p-0"></label>
+                    <input asp-for=Product.BulkRate10 class="form-control" />
+                    <span asp-validation-for=Product.BulkRate10></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.BulkRate100 class="p-0"></label>
+                    <input asp-for=Product.BulkRate100 class="form-control" />
+                    <span asp-validation-for=Product.BulkRate100></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.Inventory class="p-0"></label>
+                    <input asp-for=Product.Inventory class="form-control" />
+                    <span asp-validation-for=Product.Inventory></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for=Product.CustomerId class="p-0"></label>
+                    @* <input asp-for=Product.CustomerId class="form-control" /> *@
+                    @* <select asp-for="Product.CustomerId" asp-items=ViewBag.CustomerList class="form-select">
+                    <option disabled selected>--Select Customer--</option>
+                    </select> *@
+                    <select asp-for="Product.CustomerId" asp-items=@Model.CustomerList class="form-select">
+                        <option disabled selected>--Select Customer--</option>
+                    </select>
+
+                </div>
+                @* TODO: Fix the browse color button, can't see it *@
+                <div class="mb-3 row">
+                    <label asp-for=Product.ImageURL class="p-0">Browse</label>
+                    <input type="file" name="file" class="form-control" />
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        @if (Model.Product.Id != 0)
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Update</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-primary form-control">Create</button>
+                        }
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
 
 
+            </div>
+        </div>
+        <div class="col-2">
+            <img src="@Model.Product.ImageURL" width="100%"
+                style="border-radius:5px; border:1px solid #bbb9b9"/>
+        </div>
     </div>
+    
 </form>
 
 @* Allows for client side validation from the shared partial view which has JS stored in it *@

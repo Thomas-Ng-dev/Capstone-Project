@@ -101,7 +101,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
                     // ImageURL starts as empty or null, set it with the new saved image
-                    productVM.Product.ImageURL = @"images\produce\" + fileName;
+                    productVM.Product.ImageURL = @"\images\product\" + fileName;
                 }
 
                 _unitOfWork.Product.Add(productVM.Product);
