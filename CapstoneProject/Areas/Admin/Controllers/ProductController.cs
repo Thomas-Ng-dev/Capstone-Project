@@ -102,7 +102,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
                     {
                         
                         var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageURL.
-                            TrimStart('\\');
+                            TrimStart('\\'));
                         if(System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
