@@ -79,10 +79,6 @@
                 </div>
                 <div class="mb-3 row">
                     <label asp-for=Product.CustomerId class="p-0"></label>
-                    @* <input asp-for=Product.CustomerId class="form-control" /> *@
-                    @* <select asp-for="Product.CustomerId" asp-items=ViewBag.CustomerList class="form-select">
-                    <option disabled selected>--Select Customer--</option>
-                    </select> *@
                     <select asp-for="Product.CustomerId" asp-items=@Model.CustomerList class="form-select">
                         <option disabled selected>--Select Customer--</option>
                     </select>

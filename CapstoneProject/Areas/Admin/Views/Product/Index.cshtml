@@ -30,36 +30,7 @@
                 <th></th>
             </tr>
         </thead>
-        @* <tbody>
-            
-            @foreach (var product in Model.OrderBy(x => x.Name))
-            {
-                <tr>
-                    <td>@product.Name</td>
-                    <td>@product.ProductCode</td>
-                    <td>@product.NetWeight</td>
-                    <td>@product.GrossWeight</td>
-                    <td>@product.IsHazardous</td>
-                    <td>@product.UNnumber</td>
-                    <td>@product.Price</td>
-                    <td>@product.BulkRate10</td>
-                    <td>@product.BulkRate100</td>
-                    <td>@product.Inventory</td>
-                    <td>@product.Customer.Name</td>
-                    <td>@product.ImageURL</td>
-                    <td>
-                        <div class="w-100 btn-group" role="group">
-                            <a asp-controller="Product" asp-action="Upsert" asp-route-id="@product.Id" class="btn btn-primary mx-2">
-                                <i class="bi bi-pencil-square"></i> Edit
-                            </a>
-                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger mx-2">
-                                <i class="bi bi-dash-circle"></i> Delete
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody> *@
+        
     </table>
 </div>
 
