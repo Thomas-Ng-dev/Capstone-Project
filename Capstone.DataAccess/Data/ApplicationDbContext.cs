@@ -1,9 +1,11 @@
 ﻿using Capstone.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Capstone.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -15,6 +17,8 @@ namespace Capstone.DataAccess.Data
         // Seeding data, add-migration after seeding
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Needed for Identity or program won't run with old DbContext
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Customer>().HasData
                 (
                     new Customer { Id = 1, Name = "Company 1", Address = "123 Street", City = "SomeCity", Province = "British Columbia", PostalCode = "G4W2K0", Country = "Canada", Phone = "111-222-3333", Email = "mymail@mail.com" },
