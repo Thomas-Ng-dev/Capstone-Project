@@ -151,14 +151,16 @@ namespace CapstoneProject.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
                 // Add new properties for account
                 user.City = Input.City;
                 user.Name = Input.Name;
-                user.Email = Input.Email;
-                user.PostalCode = Input.PostalCode;
-                user.StreetAddress = Input.StreetAddress;
                 user.Province = Input.Province;
+                user.PostalCode = Input.PostalCode;
+                user.PhoneNumber = Input.PhoneNumber;
+                user.StreetAddress = Input.StreetAddress;
+                
+                var result = await _userManager.CreateAsync(user, Input.Password);
+                
 
                 if (result.Succeeded)
                 {
