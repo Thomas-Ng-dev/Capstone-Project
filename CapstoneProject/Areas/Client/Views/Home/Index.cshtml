@@ -18,7 +18,9 @@
                         </div>
                         <div>
                             @* Add link to product pages later *@
-                            <a href="" class="btn btn-primary bg-gradient border-0 form-control">
+                            <a asp-action="BulkPricing" 
+                            asp-route-productId="@product.Id" 
+                            class="btn btn-primary bg-gradient border-0 form-control">
                                 Bulk Pricing available!
                             </a>
                         </div>
