@@ -15,6 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+// Add razor page services for all the identity pages which are not MVC
+builder.Services.AddRazorPages();
 // Add Repository/UnitOfWork to the service builder
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -38,6 +40,8 @@ app.UseAuthorization();
 
 app.UseAuthorization();
 
+// Add ability for app to route to razor pages
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Client}/{controller=Home}/{action=Index}/{id?}");
