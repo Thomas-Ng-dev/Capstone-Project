@@ -15,6 +15,7 @@ namespace Capstone.DataAccess.Repository
         public ICustomerRepository Customer { get; private set; }
         public IProductRepository Product { get; private set; }
         public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -22,6 +23,7 @@ namespace Capstone.DataAccess.Repository
             Customer = new CustomerRepository(_database);
             Product = new ProductRepository(_database);
             ShoppingCart = new ShoppingCartRepository(_database);
+            ApplicationUser = new ApplicationUserRepository(_database);
         }
 
         public void Save()

@@ -13,6 +13,7 @@ namespace Capstone.DataAccess.Repository.IRepository
         ICustomerRepository Customer { get; }
         IProductRepository Product { get; }
         IShoppingCartRepository ShoppingCart { get; }
+        IApplicationUserRepository ApplicationUser { get; }
         void Save();
     }
 }
