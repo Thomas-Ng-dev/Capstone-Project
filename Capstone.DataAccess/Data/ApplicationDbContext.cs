@@ -9,11 +9,12 @@ namespace Capstone.DataAccess.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+
         }
         // Create table in sql server, need to add-migration "COMMENT" in npm. Then update-database.
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         // Seeding data, add-migration after seeding
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

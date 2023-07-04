@@ -8,5 +8,7 @@ namespace Capstone.Utility
 {
     public static class StaticDetails
     {
+        public const string Role_Customer = "Customer";
+        public const string Role_Admin = "Admin";
     }
 }

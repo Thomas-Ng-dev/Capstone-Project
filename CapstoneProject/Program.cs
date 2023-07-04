@@ -3,6 +3,8 @@ using Capstone.DataAccess.Repository;
 using Capstone.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Capstone.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +16,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 // Add razor page services for all the identity pages which are not MVC
 builder.Services.AddRazorPages();
 // Add Repository/UnitOfWork to the service builder
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+// Add email services, not used at the moment, just to avoid exception
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 
