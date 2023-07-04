@@ -15,6 +15,7 @@ namespace Capstone.DataAccess.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         // Seeding data, add-migration after seeding
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

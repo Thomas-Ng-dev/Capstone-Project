@@ -14,12 +14,14 @@ namespace Capstone.DataAccess.Repository
         // Pass all models within this interface
         public ICustomerRepository Customer { get; private set; }
         public IProductRepository Product { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _database = db;
             Customer = new CustomerRepository(_database);
             Product = new ProductRepository(_database);
+            ShoppingCart = new ShoppingCartRepository(_database);
         }
 
         public void Save()
