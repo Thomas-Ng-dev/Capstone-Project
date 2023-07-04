@@ -1,11 +1,15 @@
 ﻿using Capstone.DataAccess.Data;
 using Capstone.DataAccess.Repository.IRepository;
 using Capstone.Models;
+using Capstone.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CapstoneProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    // Only accessible to admin, can also be applied to individual action methods
+    [Authorize(Roles = StaticDetails.Role_Admin)]
     public class CustomerController : Controller
     {
         // Access ApplicationDbContext which is the sql database
