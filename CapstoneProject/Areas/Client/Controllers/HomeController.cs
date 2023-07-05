@@ -26,6 +26,11 @@ namespace CapstoneProject.Areas.Client.Controllers
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Customer").ToList();
             return View(productList);
         }
+        // TODO, make summary page
+        public IActionResult CartSummary()
+        {
+            return View();
+        }
         public IActionResult BulkPricing(int productId)
         {
             ShoppingCart cart = new()
