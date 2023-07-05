@@ -1,8 +1,10 @@
 using Capstone.DataAccess.Repository.IRepository;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace CapstoneProject.Areas.Client.Controllers
 {
@@ -26,8 +28,41 @@ namespace CapstoneProject.Areas.Client.Controllers
         }
         public IActionResult BulkPricing(int productId)
         {
-            Product product = _unitOfWork.Product.Get(prod => prod.Id == productId, includeProperties: "Customer");
-            return View(product);
+            ShoppingCart cart = new()
+            {
+                Product = _unitOfWork.Product.Get(prod => prod.Id == productId, includeProperties: "Customer"),
+                Count = 1,
+                ProductId = productId
+            };
+            return View(cart);
+        }
+
+        [HttpPost]
+        [Authorize] // need to be logged in to use shopping cart
+        public IActionResult BulkPricing(ShoppingCart cart)
+        {
+            // Get the UserId
+            var identity = (ClaimsIdentity)User.Identity;
+            var userId = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            cart.ApplicationUserId = userId;
+
+            // Keep adding lines to the DB if you don't check for duplicate products
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(x => x.ApplicationUserId == userId 
+                && x.ProductId == cart.ProductId);
+
+            if(cartFromDb != null) 
+            {
+                cartFromDb.Count += cart.Count;
+                _unitOfWork.ShoppingCart.Update(cart);
+            }
+            else
+            {
+                _unitOfWork.ShoppingCart.Add(cart);
+            }
+
+
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
