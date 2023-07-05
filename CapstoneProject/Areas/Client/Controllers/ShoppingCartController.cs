@@ -37,6 +37,40 @@ namespace CapstoneProject.Areas.Client.Controllers
             }
             return View(ShoppingCartVM);
         }
+
+        public IActionResult IncrementQty(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get( x => x.Id == cartId );
+            cartFromDb.Count += 1;
+            _unitOfWork.ShoppingCart.Update( cartFromDb );
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DecrementQty(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(x => x.Id == cartId);
+            if(cartFromDb.Count <= 1) 
+            {
+                _unitOfWork.ShoppingCart.Remove(cartFromDb);
+            }
+            else
+            {
+                cartFromDb.Count -= 1;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+            }
+            
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteItem(int cartId)
+        {
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(x => x.Id == cartId);
+            _unitOfWork.ShoppingCart.Remove(cartFromDb);
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
+        }
         // Check if standard or bulk pricing
         private double GetQuantityPrice(ShoppingCart cart)
         {
