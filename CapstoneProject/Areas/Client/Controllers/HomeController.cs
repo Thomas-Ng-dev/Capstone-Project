@@ -53,7 +53,7 @@ namespace CapstoneProject.Areas.Client.Controllers
             if(cartFromDb != null) 
             {
                 cartFromDb.Count += cart.Count;
-                _unitOfWork.ShoppingCart.Update(cart);
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
             }
             else
             {
