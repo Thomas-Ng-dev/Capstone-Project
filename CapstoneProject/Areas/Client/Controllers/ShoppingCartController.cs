@@ -40,7 +40,34 @@ namespace CapstoneProject.Areas.Client.Controllers
         }
         public IActionResult ShoppingCartSummary()
         {
-            return View();
+            var identity = (ClaimsIdentity)User.Identity;
+            var userId = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            ShoppingCartVM = new()
+            {
+                ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(
+                    x => x.ApplicationUserId == userId,
+                    includeProperties: "Product"),
+                OrderHeader = new()
+            };
+
+            // This page needs OrderHeader to be populated
+            ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(x => x.Id == userId);
+
+            ShoppingCartVM.OrderHeader.Name = ShoppingCartVM.OrderHeader.ApplicationUser.Name;
+            ShoppingCartVM.OrderHeader.PhoneNumber = ShoppingCartVM.OrderHeader.ApplicationUser.PhoneNumber;
+            ShoppingCartVM.OrderHeader.StreetAddress = ShoppingCartVM.OrderHeader.ApplicationUser.StreetAddress;
+            ShoppingCartVM.OrderHeader.City = ShoppingCartVM.OrderHeader.ApplicationUser.City;
+            ShoppingCartVM.OrderHeader.Province = ShoppingCartVM.OrderHeader.ApplicationUser.Province;
+            ShoppingCartVM.OrderHeader.PostalCode = ShoppingCartVM.OrderHeader.ApplicationUser.PostalCode;
+
+
+            foreach (var item in ShoppingCartVM.ShoppingCartList)
+            {
+                item.ItemPrice = GetQuantityPrice(item);
+                ShoppingCartVM.OrderHeader.OrderTotal += (item.ItemPrice * item.Count);
+            }
+            return View(ShoppingCartVM);
         }
         public IActionResult IncrementQty(int cartId)
         {
