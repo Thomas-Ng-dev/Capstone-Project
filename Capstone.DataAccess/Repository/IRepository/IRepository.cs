@@ -12,7 +12,7 @@ namespace Capstone.DataAccess.Repository.IRepository
     public interface IRepository<T> where T : class
     {
         //Retrieve list from database and store in collection
-        IEnumerable<T> GetAll(string? includeProperties = null);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null);
         //Retrieve 1 element
         T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
         void Add(T entity);

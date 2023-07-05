@@ -22,6 +22,9 @@ namespace Capstone.Models
         [ForeignKey("ApplicationUserId")]
         [ValidateNever]
         public ApplicationUser ApplicationUser { get; set; }
+        // This data is not sent to database. This is just for access on the UI otherwise we can't see this value
+        [NotMapped] 
+        public double ItemPrice { get; set; }
 
     }
 }
