@@ -10,5 +10,13 @@ namespace Capstone.Utility
     {
         public const string Role_Customer = "Customer";
         public const string Role_Admin = "Admin";
-    }
+
+        public const string StatusPending = "Pending";
+		public const string StatusApproved = "Approved";
+		public const string StatusProcessing = "Processing";
+		public const string StatusShipped = "Shipped";
+
+		public const string PaymentPending = "Pending";
+		public const string PaymentApproved = "Approved";
+	}
 }
