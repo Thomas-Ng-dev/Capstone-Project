@@ -27,13 +27,14 @@ namespace CapstoneProject.Areas.Client.Controllers
             {
                 ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(
                     x => x.ApplicationUserId == userId,
-                    includeProperties: "Product")
+                    includeProperties: "Product"),
+                OrderHeader = new()
             };
 
             foreach(var item in ShoppingCartVM.ShoppingCartList)
             {
                 item.ItemPrice = GetQuantityPrice(item);
-                ShoppingCartVM.OrderTotal += (item.ItemPrice * item.Count);
+                ShoppingCartVM.OrderHeader.OrderTotal += (item.ItemPrice * item.Count);
             }
             return View(ShoppingCartVM);
         }
