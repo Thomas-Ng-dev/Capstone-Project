@@ -38,7 +38,10 @@ namespace CapstoneProject.Areas.Client.Controllers
             }
             return View(ShoppingCartVM);
         }
-
+        public IActionResult ShoppingCartSummary()
+        {
+            return View();
+        }
         public IActionResult IncrementQty(int cartId)
         {
             var cartFromDb = _unitOfWork.ShoppingCart.Get( x => x.Id == cartId );
