@@ -1,6 +1,7 @@
 ﻿using Capstone.DataAccess.Repository.IRepository;
 using Capstone.Models;
 using Capstone.Models.ViewModels;
+using Capstone.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -13,6 +14,7 @@ namespace CapstoneProject.Areas.Client.Controllers
     public class ShoppingCartController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
         public ShoppingCartController(IUnitOfWork unitOfWork)
         {
@@ -69,6 +71,51 @@ namespace CapstoneProject.Areas.Client.Controllers
             }
             return View(ShoppingCartVM);
         }
+        [HttpPost]
+        [ActionName("ShoppingCartSummary")]
+        public IActionResult ShoppingCartSummaryPOST()
+        {
+			var identity = (ClaimsIdentity)User.Identity;
+			var userId = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+
+            ShoppingCartVM.ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(x => x.ApplicationUserId == userId,
+                    includeProperties: "Product");
+            ShoppingCartVM.OrderHeader.OrderDate = System.DateTime.Now;
+            ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
+			ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(x => x.Id == userId);
+
+            ShoppingCartVM.OrderHeader.PaymentStatus = StaticDetails.PaymentPending;
+			ShoppingCartVM.OrderHeader.OrderStatus = StaticDetails.StatusPending;
+
+			foreach (var item in ShoppingCartVM.ShoppingCartList)
+			{
+				item.ItemPrice = GetQuantityPrice(item);
+				ShoppingCartVM.OrderHeader.OrderTotal += (item.ItemPrice * item.Count);
+			}
+
+			_unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
+            _unitOfWork.Save();
+            foreach(var item in ShoppingCartVM.ShoppingCartList)
+            {
+                OrderDetail orderDetail = new()
+                {
+                    ProductId = item.ProductId,
+                    OrderHeaderId = ShoppingCartVM.OrderHeader.Id,
+                    Price = item.ItemPrice,
+                    Count = item.Count
+                };
+                _unitOfWork.OrderDetail.Add(orderDetail);
+                _unitOfWork.Save();
+            }
+			return View(ShoppingCartVM);
+		}
+
+        public IActionResult OrderConfirmation(int id)
+        {
+            return View(id);
+        }
+
         public IActionResult IncrementQty(int cartId)
         {
             var cartFromDb = _unitOfWork.ShoppingCart.Get( x => x.Id == cartId );
