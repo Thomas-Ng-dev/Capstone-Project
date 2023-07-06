@@ -83,7 +83,7 @@ namespace CapstoneProject.Areas.Client.Controllers
                     includeProperties: "Product");
             ShoppingCartVM.OrderHeader.OrderDate = System.DateTime.Now;
             ShoppingCartVM.OrderHeader.ApplicationUserId = userId;
-			ShoppingCartVM.OrderHeader.ApplicationUser = _unitOfWork.ApplicationUser.Get(x => x.Id == userId);
+			ApplicationUser applicationUser = _unitOfWork.ApplicationUser.Get(x => x.Id == userId);
 
             ShoppingCartVM.OrderHeader.PaymentStatus = StaticDetails.PaymentPending;
 			ShoppingCartVM.OrderHeader.OrderStatus = StaticDetails.StatusPending;
@@ -108,7 +108,7 @@ namespace CapstoneProject.Areas.Client.Controllers
                 _unitOfWork.OrderDetail.Add(orderDetail);
                 _unitOfWork.Save();
             }
-			return View(ShoppingCartVM);
+			return RedirectToAction("OrderConfirmation", new {id = ShoppingCartVM.OrderHeader.Id});
 		}
 
         public IActionResult OrderConfirmation(int id)
