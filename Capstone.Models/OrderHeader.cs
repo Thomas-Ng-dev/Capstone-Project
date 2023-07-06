@@ -25,6 +25,7 @@ namespace Capstone.Models
         public string? TrackingNumber { get; set; }
         public string? Carrier { get; set; }
         // For Stripe payment
+        public string? SessionId { get; set; }
         public string? PaymentIntentId { get; set; }
         [Required]
         public string Name { get; set; }
