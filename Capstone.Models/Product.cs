@@ -29,16 +29,16 @@ namespace Capstone.Models
         [StringLength(6, MinimumLength = 6)]
         public string? UNnumber { get; set; }
         [Required]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")] // Limit to two decimal places
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Price must be set at 2 Decimal places")]
         public double Price { get; set; }
         [Required]
         [DisplayName("Price at 10+ purchased")]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        public double BulkRate10 { get; set; }
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Price must be set at 2 Decimal places")]
+		public double BulkRate10 { get; set; }
         [Required]
         [DisplayName("Price at 100+ purchased")]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        public double BulkRate100 { get; set;}
+        [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Price must be set at 2 Decimal places")]
+		public double BulkRate100 { get; set;}
         [Required]
         public int Inventory { get; set; }
         public int CustomerId { get; set; }
