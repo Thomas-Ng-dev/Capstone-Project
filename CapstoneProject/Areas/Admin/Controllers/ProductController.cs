@@ -146,7 +146,7 @@ namespace CapstoneProject.Areas.Admin.Controllers
             }
             
         }
-        Temporary until combined view is tested
+        //Temporary until combined view is tested
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
