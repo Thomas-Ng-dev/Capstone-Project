@@ -11,7 +11,7 @@ Features include:
 <ul>
   <li>User Creation</li>
   <li>Authorization and Authentication</li>
-  <li>Databases</li>
+  <li>Databases, SQL</li>
   <li>CRUD operations</li>
   <li>Stripe payment</li>
   <li>Shopping Cart</li>
@@ -19,4 +19,8 @@ Features include:
   <li>RESTful API</li>
   <li>Frameworks such as .NET Core, Boostrap, Entity and Identity</li>
   <li>Libraries such as SweetAlert, DataTables and Toastr</li>
+  <li>Design Patterns: N-Tier, Repository, Unit of Work, MVC</li>
 </ul>
+
+# Configuration
+Please see the documentation folder for configuration instructions.
