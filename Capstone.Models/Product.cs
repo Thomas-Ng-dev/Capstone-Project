@@ -12,7 +12,6 @@ namespace Capstone.Models
 {
     public class Product
     {
-        // These are server side validations
         [Key]
         public int Id { get; set; }
         [Required]
