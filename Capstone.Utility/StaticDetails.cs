@@ -18,5 +18,7 @@ namespace Capstone.Utility
 
 		public const string PaymentPending = "Pending";
 		public const string PaymentApproved = "Approved";
+
+
 	}
 }
