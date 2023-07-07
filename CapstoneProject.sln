@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Capstone.Models", "Capstone
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Capstone.Utility", "Capstone.Utility\Capstone.Utility.csproj", "{DC5BCC6E-3EA0-44F1-B486-A9AFAE3339EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{AFE36FEE-043A-4EB2-B2EF-3EFC8EEB992A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{AFE36FEE-043A-4EB2-B2EF-3EFC8EEB992A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
