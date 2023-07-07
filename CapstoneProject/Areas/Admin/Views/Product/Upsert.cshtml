@@ -37,27 +37,6 @@
                     <span asp-validation-for=Product.GrossWeight></span>
                 </div>
                 <div class="mb-3 row">
-                    @* Fix this boolean in the form? *@
-                    <label asp-for=Product.IsHazardous class="p-0"></label>
-                    @* <input asp-for=IsHazardous type="checkbox" class="form-control" /> *@
-                    <div>
-                        <label>
-                            <input type="radio" name="IsHazardous" value="true" />
-                            True
-                        </label>
-                        <label>
-                            <input type="radio" name="IsHazardous" value="false" />
-                            False
-                        </label>
-                    </div>
-                    <span asp-validation-for=Product.IsHazardous></span>
-                </div>
-                <div class="mb-3 row">
-                    <label asp-for=Product.UNnumber class="p-0"></label>
-                    <input asp-for=Product.UNnumber class="form-control" />
-                    <span asp-validation-for=Product.UNnumber></span>
-                </div>
-                <div class="mb-3 row">
                     <label asp-for=Product.Price class="p-0"></label>
                     <input asp-for=Product.Price class="form-control" />
                     <span asp-validation-for=Product.Price></span>

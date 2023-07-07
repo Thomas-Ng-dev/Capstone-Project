@@ -25,8 +25,6 @@ namespace Capstone.DataAccess.Repository
                 productFromDB.ProductCode = product.ProductCode;
                 productFromDB.NetWeight = product.NetWeight;
                 productFromDB.GrossWeight = product.GrossWeight;
-                productFromDB.IsHazardous = product.IsHazardous;
-                productFromDB.UNnumber = product.UNnumber;
                 productFromDB.Price = product.Price;
                 productFromDB.BulkRate10 = product.BulkRate10;
                 productFromDB.BulkRate100 = product.BulkRate100;

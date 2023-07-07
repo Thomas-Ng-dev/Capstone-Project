@@ -16,17 +16,15 @@ function loadDataTable()
             },
             "columns":
                 [
-                    { data: 'name', "width": "15%" },
+                    { data: 'name', "width": "20%" },
                     { data: 'productCode', "width": "15%" },
                     { data: 'netWeight', "width": "5%" },
                     { data: 'grossWeight', "width": "5%" },
-                    { data: 'isHazardous', "width": "5%" },
-                    { data: 'uNnumber', "width": "5%" },
                     { data: 'price', "width": "5%" },
                     { data: 'bulkRate10', "width": "5%" },
                     { data: 'bulkRate100', "width": "5%" },
                     { data: 'inventory', "width": "5%" },
-                    { data: 'customer.name', "width": "5%" },
+                    { data: 'customer.name', "width": "10%" },
                     {
                         data: 'id',
                         "render": function (data) {

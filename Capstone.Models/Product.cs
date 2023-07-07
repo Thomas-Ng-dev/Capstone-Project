@@ -23,11 +23,6 @@ namespace Capstone.Models
         [Required]
         public double GrossWeight { get; set; }
         [Required]
-        [DisplayName("Hazardous Material")]
-        public bool IsHazardous { get; set; }
-        [StringLength(6, MinimumLength = 6)]
-        public string? UNnumber { get; set; }
-        [Required]
         [RegularExpression(@"^\d+(\.\d{1,2})?$", ErrorMessage = "Price must be set at 2 Decimal places")]
         public double Price { get; set; }
         [Required]

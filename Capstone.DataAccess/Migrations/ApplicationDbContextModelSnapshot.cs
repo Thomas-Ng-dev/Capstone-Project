@@ -75,7 +75,7 @@ namespace Capstone.DataAccess.Migrations
                             City = "SomeCity",
                             Country = "Canada",
                             Email = "mymail@mail.com",
-                            Name = "Company 1",
+                            Name = "Composite One",
                             Phone = "111-222-3333",
                             PostalCode = "G4W2K0",
                             Province = "British Columbia"
@@ -87,7 +87,7 @@ namespace Capstone.DataAccess.Migrations
                             City = "Argon",
                             Country = "Canada",
                             Email = "guy@mail.com",
-                            Name = "Company 2",
+                            Name = "AOC Resin",
                             Phone = "111-225-3243",
                             PostalCode = "H4M3D6",
                             Province = "Ontario"
@@ -99,7 +99,7 @@ namespace Capstone.DataAccess.Migrations
                             City = "Borat",
                             Country = "Canada",
                             Email = "dude@mail.com",
-                            Name = "Company 3",
+                            Name = "Some Company",
                             Phone = "999-222-3333",
                             PostalCode = "J4W2R3",
                             Province = "Quebec"
@@ -232,9 +232,6 @@ namespace Capstone.DataAccess.Migrations
                     b.Property<int>("Inventory")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsHazardous")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -248,10 +245,6 @@ namespace Capstone.DataAccess.Migrations
                     b.Property<string>("ProductCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UNnumber")
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)");
 
                     b.HasKey("Id");
 
@@ -267,14 +260,12 @@ namespace Capstone.DataAccess.Migrations
                             BulkRate100 = 3.5,
                             CustomerId = 1,
                             GrossWeight = 110.0,
-                            ImageURL = "",
+                            ImageURL = "\\images\\product\\image1.jpeg",
                             Inventory = 109,
-                            IsHazardous = true,
-                            Name = "Prod1",
+                            Name = "Some Product",
                             NetWeight = 100.0,
                             Price = 5.0,
-                            ProductCode = "HMG1",
-                            UNnumber = "UN0072"
+                            ProductCode = "HMG1"
                         },
                         new
                         {
@@ -283,10 +274,9 @@ namespace Capstone.DataAccess.Migrations
                             BulkRate100 = 49.990000000000002,
                             CustomerId = 2,
                             GrossWeight = 13.0,
-                            ImageURL = "",
+                            ImageURL = "\\images\\product\\image2.jpeg",
                             Inventory = 1100,
-                            IsHazardous = false,
-                            Name = "Prod2",
+                            Name = "Whatever Product",
                             NetWeight = 10.0,
                             Price = 55.700000000000003,
                             ProductCode = "xx111"
@@ -298,14 +288,12 @@ namespace Capstone.DataAccess.Migrations
                             BulkRate100 = 899.95000000000005,
                             CustomerId = 3,
                             GrossWeight = 1224.0,
-                            ImageURL = "",
+                            ImageURL = "\\images\\product\\image3.jpg",
                             Inventory = 55,
-                            IsHazardous = true,
-                            Name = "Prod3",
+                            Name = "Chemical Pail",
                             NetWeight = 1090.0,
                             Price = 1000.5,
-                            ProductCode = "saf13",
-                            UNnumber = "UN0004"
+                            ProductCode = "saf13"
                         },
                         new
                         {
@@ -314,44 +302,12 @@ namespace Capstone.DataAccess.Migrations
                             BulkRate100 = 20.5,
                             CustomerId = 1,
                             GrossWeight = 15.0,
-                            ImageURL = "",
+                            ImageURL = "\\images\\product\\image4.jpg",
                             Inventory = 54,
-                            IsHazardous = true,
-                            Name = "Prod4",
+                            Name = "Paint Can Black",
                             NetWeight = 12.0,
                             Price = 25.0,
-                            ProductCode = "fdsfds11",
-                            UNnumber = "UN0004"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BulkRate10 = 9.0,
-                            BulkRate100 = 8.75,
-                            CustomerId = 1,
-                            GrossWeight = 22.0,
-                            ImageURL = "",
-                            Inventory = 101,
-                            IsHazardous = false,
-                            Name = "Prod5",
-                            NetWeight = 15.0,
-                            Price = 10.0,
-                            ProductCode = "fsdgfds123"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BulkRate10 = 49.990000000000002,
-                            BulkRate100 = 3.5,
-                            CustomerId = 3,
-                            GrossWeight = 60.0,
-                            ImageURL = "",
-                            Inventory = 45,
-                            IsHazardous = false,
-                            Name = "Prod6",
-                            NetWeight = 55.0,
-                            Price = 55.0,
-                            ProductCode = "fdsgds1235"
+                            ProductCode = "fdsfds11"
                         });
                 });
 
